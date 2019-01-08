@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CySwitch">
+        <!--是否为Checked状态-->
+        <attr name="isChecked" format="boolean" />
+        <!--是否可以切换-->
+        <attr name="switchable" format="boolean" />
+        <!--动画时间间隔-->
+        <attr name="duration" format="integer" />
+        <!--控件圆角-->
+        <attr name="viewRadius" format="dimension|reference" />
+        <!--边框宽度-->
+        <attr name="borderWidth" format="dimension|reference" />
+        <!--边框颜色 Checked-->
+        <attr name="borderColorChecked" format="color|reference" />
+        <!--边框颜色 Unchecked-->
+        <attr name="borderColorUnchecked" format="color|reference" />
+        <!--背景颜色 Checked-->
+        <attr name="bgColorChecked" format="color|reference" />
+        <!--背景颜色 Unchecked-->
+        <attr name="bgColorUnchecked" format="color|reference" />
+        <!--滑块颜色 Checked-->
+        <attr name="sliderColorChecked" format="color|reference" />
+        <!--滑块颜色 Unchecked-->
+        <attr name="sliderColorUnchecked" format="color|reference" />
+        <!--滑块圆角 -->
+        <attr name="sliderRadius" format="dimension|reference" />
+        <!--滑块宽-->
+        <attr name="sliderWidth" format="dimension|reference" />
+        <!--滑块高-->
+        <attr name="sliderHeight" format="dimension|reference" />
+    </declare-styleable>
+
+</resources>

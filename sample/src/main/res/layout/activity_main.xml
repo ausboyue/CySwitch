@@ -1,0 +1,93 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp">
+
+
+    <cn.icheny.cyswitch.CySwitch
+        android:id="@+id/cy_switch"
+        android:layout_width="100dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        app:borderColorChecked="@android:color/holo_green_dark"
+        app:borderColorUnchecked="@android:color/holo_blue_light"
+        app:borderWidth="0dp"
+        app:isChecked="true"
+        app:sliderHeight="40dp"
+        app:sliderRadius="0dp"
+        app:sliderWidth="40dp"
+        app:viewRadius="0dp" />
+
+    <SeekBar
+        android:id="@+id/pb_view_radius"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:max="45"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/tv_view_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="View Radius 0dp" />
+
+    <SeekBar
+        android:id="@+id/pb_slider_radius"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:max="40"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/tv_slider_radius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="Slider Radius 0dp" />
+
+    <SeekBar
+        android:id="@+id/pb_border_width"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:max="5"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/tv_border_width"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:text="Border 0dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:onClick="checkableTrue"
+        android:text="Checkable True"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="checkableFalse"
+        android:text="Checkable False"
+        android:textAllCaps="false" />
+
+
+</LinearLayout>
