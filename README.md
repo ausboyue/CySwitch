@@ -63,8 +63,8 @@ Add the dependency:
 ``` xml
     <cn.icheny.cyswitch.CySwitch
         android:id="@+id/cy_switch"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
         app:borderColorChecked="@android:color/holo_green_dark"
