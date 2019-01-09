@@ -106,6 +106,9 @@ Please give me some time to update the documentation.
 
 # Release note
 
+## 1.0.1
+ - Optimize checked status of The CySwitch when it be toggled.
+
 ## 1.0.0
  - release first version v1.0.0 
  - nothing now
