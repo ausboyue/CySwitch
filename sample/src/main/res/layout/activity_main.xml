@@ -9,8 +9,8 @@
 
     <cn.icheny.cyswitch.CySwitch
         android:id="@+id/cy_switch"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
         app:borderColorChecked="@android:color/holo_green_dark"
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:max="45"
+        android:max="25"
         android:progress="0" />
 
     <TextView
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:max="40"
+        android:max="20"
         android:progress="0" />
 
     <TextView
