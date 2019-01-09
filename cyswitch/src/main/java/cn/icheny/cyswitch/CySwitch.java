@@ -19,7 +19,7 @@ import android.widget.Checkable;
  *     @author : www.icheny.cn
  *     @e-mail : ausboyue@gmail.com
  *     @time   : 2019.01.08
- *     @desc   : CySwitch
+ *     @desc   : CySwitch , A custom Switch View.
  *     @version: 1.0.0
  * </pre>
  */
@@ -272,6 +272,8 @@ public class CySwitch extends View implements Checkable {
             return;
         }
 
+        mChecked = checked;
+
         int width = getWidth();
         startAnim(checked ? width / 2 : -width / 2);
     }
@@ -348,14 +350,12 @@ public class CySwitch extends View implements Checkable {
             }
         });
         mValueAnimator.start();
-
     }
 
     /**
      * Switch check status.
      */
     private void switchCheckStatus() {
-        mChecked = !mChecked;
         mOffset = 0;
         //set location of slider center
         setSlideCenter(getWidth());
