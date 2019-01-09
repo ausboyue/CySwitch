@@ -7,7 +7,7 @@ A custom switch view.
 ## Download from Gradle
 
 Add to your root build.gradle:
-``` xml
+```groovy
     allprojects {
         repositories {
             ...
@@ -17,7 +17,7 @@ Add to your root build.gradle:
 ```
 
 Add the dependency:
-``` xml
+```groovy
     dependencies {
             implementation 'com.github.ausboyue:CySwitch:1.0.1'
     }
@@ -25,7 +25,7 @@ Add the dependency:
 
 ## Friendly Hints
 **If you can't download it, maybe you have used the Google's repository that you can't connect to the Google server.Please open the proxy or top the target repository.As follows：**
-``` xml
+```groovy
     allprojects {
         repositories {
             maven { url 'https://jitpack.io' } // target repository,be top
@@ -38,7 +38,7 @@ Add the dependency:
 ## Download from Maven
 
 Add the JitPack repository to your build file:
-``` xml
+```groovy
     <repositories>
         <repository>
             <id>jitpack.io</id>
@@ -48,7 +48,7 @@ Add the JitPack repository to your build file:
 ```
 
 Add the dependency:
-``` xml
+```groovy
     <dependency>
         <groupId>com.github.ausboyue</groupId>
         <artifactId>CySwitch</artifactId>
@@ -60,7 +60,7 @@ Add the dependency:
 
 **1. Edit codes in layout xml file as below :**
 
-``` xml
+```xml
     <cn.icheny.cyswitch.CySwitch
         android:id="@+id/cy_switch"
         android:layout_width="120dp"
@@ -78,7 +78,7 @@ Add the dependency:
 ```
 
 **2. Edit codes in java file as below :**
-``` java
+```java
         CySwitch cy_switch = findViewById(R.id.cy_switch);
         cy_switch.setViewRadius(radius);
         cy_switch.setSliderRadius(radius);
