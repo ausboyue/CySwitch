@@ -1,4 +1,4 @@
-# CySwitch
+# CySwitch    ![CySwitch](https://jitpack.io/v/ausboyue/CySwitch.svg)
 A custom switch view.
 
 ## ScreenShot
