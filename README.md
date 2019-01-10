@@ -61,7 +61,7 @@ Add the dependency:
 **1. Edit codes in layout xml file as below :**
 
 ```xml
-    <cn.icheny.cyswitch.CySwitch
+    <cn.icheny.view.CySwitch
         android:id="@+id/cy_switch"
         android:layout_width="120dp"
         android:layout_height="50dp"
