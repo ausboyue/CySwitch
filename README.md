@@ -93,6 +93,25 @@ Add the dependency:
         });
 ```
 
+# Attributes introduction
+
+属性|描述
+:-:|:-:
+isChecked|是否为Checked状态
+switchable|是否可以切换
+duration|动画时间间隔
+viewRadius|控件圆角
+borderWidth|边框宽度
+borderColorChecked|边框颜色 Checked
+borderColorUnchecked|边框颜色  Unchecked
+bgColorChecked|背景颜色 Checked
+bgColorUnchecked|背景颜色 Unchecked
+sliderColorChecked|滑块颜色 Checked
+sliderColorUnchecked|滑块颜色 Unchecked
+sliderRadius|滑块圆角
+sliderWidth|滑块宽
+sliderHeight|滑块高
+
 # Bugs Report
 
 If you find any bug when using it, please contact [me](mailto:ausboyue@qq.com). Thanks for helping me making better.
