@@ -107,6 +107,9 @@ Please give me some time to update the documentation.
 
 # Release note
 
+## 1.0.2
+ - Just help "jitpack.io" package.
+
 ## 1.0.1
  - Optimize checked status of the CySwitch when it be toggled.
 
