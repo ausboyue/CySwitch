@@ -19,7 +19,7 @@ Add to your root build.gradle:
 Add the dependency:
 ```groovy
     dependencies {
-            implementation 'com.github.ausboyue:CySwitch:1.0.1'
+            implementation 'com.github.ausboyue:CySwitch:1.0.2'
     }
 ```
 
@@ -52,7 +52,7 @@ Add the dependency:
     <dependency>
         <groupId>com.github.ausboyue</groupId>
         <artifactId>CySwitch</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
     </dependency>
 ```
 
