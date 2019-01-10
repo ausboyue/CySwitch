@@ -1,4 +1,4 @@
-package cn.icheny.cyswitch;
+package cn.icheny.view;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -110,6 +110,22 @@ public class CySwitch extends View implements Checkable {
 
     // Listener
     private OnCheckedChangeListener mOnCheckedListener;
+
+
+    public CySwitch(Context context) {
+        this(context, null);
+    }
+
+    public CySwitch(Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, 0);
+    }
+
+    public CySwitch(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        initAttr(attrs);
+        initPaint();
+        Switchable(mSwitchable);
+    }
 
     /**
      * Initialize attributes of Switch View.
@@ -303,21 +319,6 @@ public class CySwitch extends View implements Checkable {
         setChecked(!mChecked);
     }
 
-
-    public CySwitch(Context context) {
-        this(context, null);
-    }
-
-    public CySwitch(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
-    }
-
-    public CySwitch(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initAttr(attrs);
-        initPaint();
-        Switchable(mSwitchable);
-    }
 
     private void startAnim(float delta) {
 

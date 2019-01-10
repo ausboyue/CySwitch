@@ -7,7 +7,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import cn.icheny.cyswitch.CySwitch;
+import cn.icheny.view.CySwitch;
 /**
  * <pre>
  *     @author : www.icheny.cn
