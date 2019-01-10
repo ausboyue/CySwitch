@@ -1,5 +1,6 @@
 # CySwitch    ![CySwitch](https://jitpack.io/v/ausboyue/CySwitch.svg)
-A custom switch view.
+
+An Android custom view.
 
 ## ScreenShot
 ![easytransition](https://github.com/ausboyue/CySwitch/blob/master/art/cy_switch.gif) 
