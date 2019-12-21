@@ -53,7 +53,7 @@ Add the dependency:
     <dependency>
         <groupId>com.github.ausboyue</groupId>
         <artifactId>CySwitch</artifactId>
-        <version>1.0.3</version>
+        <version>1.1</version>
     </dependency>
 ```
 
