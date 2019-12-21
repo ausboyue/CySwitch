@@ -53,7 +53,7 @@ Add the dependency:
     <dependency>
         <groupId>com.github.ausboyue</groupId>
         <artifactId>CySwitch</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
     </dependency>
 ```
 
@@ -64,17 +64,23 @@ Add the dependency:
 ```xml
     <cn.icheny.view.CySwitch
         android:id="@+id/cy_switch"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
+        app:bgHeight="40dp"
+        app:bgWidth="100dp"
         app:borderColorChecked="@android:color/holo_green_dark"
-        app:borderColorUnchecked="@android:color/holo_blue_light"
+        app:borderColorUnchecked="@android:color/holo_red_light"
         app:borderWidth="0dp"
         app:isChecked="true"
-        app:sliderHeight="40dp"
+        app:sliderColorUnchecked="#FFFFFF"
+        app:sliderHeight="36dp"
         app:sliderRadius="0dp"
-        app:sliderWidth="40dp"
+        app:sliderWidth="46dp"
+        app:textChecked="英文"
+        app:textSize="15dp"
+        app:textUnchecked="中文"
         app:viewRadius="0dp" />
 ```
 
