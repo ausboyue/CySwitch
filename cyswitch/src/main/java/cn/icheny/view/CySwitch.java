@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.SoundEffectConstants;
 import android.view.View;
@@ -26,13 +27,17 @@ import android.widget.Checkable;
 public class CySwitch extends View implements Checkable {
     private static final int WHITE = 0XFFFFFFFF;
 
-    // The min width for SwitchView,When the SwitchView's MeasureSpec.
-    // Mode which is applied in width is not be MeasureSpec.EXACTLY ,it will be set.
-    private static final float MIN_WIDTH = 20;
+    /**
+     * The min width for SwitchView,When the SwitchView's MeasureSpec.
+     * Mode which is applied in width is not be MeasureSpec.EXACTLY ,it will be set.
+     */
+    private static final float MIN_WIDTH = 28;
 
-    // The min height for SwitchView,When the SwitchView's MeasureSpec.
-    // Mode which is applied in height is not be MeasureSpec.EXACTLY ,it will be set.
-    private static final float MIN_HEIGHT = 12;
+    /**
+     * The min height for SwitchView,When the SwitchView's MeasureSpec.
+     * Mode which is applied in height is not be MeasureSpec.EXACTLY ,it will be set.
+     */
+    private static final float MIN_HEIGHT = 16;
 
     // The check status
     private boolean mChecked;
@@ -55,10 +60,10 @@ public class CySwitch extends View implements Checkable {
     // The width of border
     private float mBorderWidth;
 
-    // The color of border when it be cheked.
+    // The color of border when it be checked.
     private int mBorderColorChecked = WHITE;
 
-    // The color of border when it be uncheked.
+    // The color of border when it be unchecked.
     private int mBorderColorUnchecked = WHITE;
 
     /**
@@ -67,12 +72,17 @@ public class CySwitch extends View implements Checkable {
     // The paint
     private Paint mBgPaint;
 
-    // The background color of view when it be cheked.
+    // The background color when it be checked.
     private int mBgColorChecked = 0XFFFF7E00;
 
-    // The background color of view when it be uncheked.
+    // The background color when it be unchecked.
     private int mBgColorUnchecked = 0XFFE5E5E5;
 
+    // The width of background.
+    private float mBgWidth;
+
+    // The height of background.
+    private float mBgHeight;
 
     /**
      * slider
@@ -80,10 +90,10 @@ public class CySwitch extends View implements Checkable {
     // The paint
     private Paint mSliderPaint;
 
-    // The slider color of view when it be cheked.
+    // The slider color of view when it be checked.
     private int mSliderColorChecked = WHITE;
 
-    // The slider color of view when it be uncheked.
+    // The slider color of view when it be unchecked.
     private int mSliderColorUnchecked = WHITE;
 
     // The corner radius of slider.
@@ -92,9 +102,22 @@ public class CySwitch extends View implements Checkable {
     // The width of slider.
     private float mSliderWidth;
 
-    // The heigth of slider.
+    // The height of slider.
     private float mSliderHeight;
 
+
+    /**
+     * text
+     */
+    // The paint
+    private Paint mTextPaint;
+    private String mCheckedText;
+    private String mUncheckedText;
+    // The text color  when it be checked.
+    private int mTextColorChecked = 0XFFFF7E00;
+    // The text color when it be unchecked.
+    private int mTextColorUnchecked = WHITE;
+    private float mTextSize;
 
     /**
      * animation
@@ -130,7 +153,7 @@ public class CySwitch extends View implements Checkable {
     /**
      * Initialize attributes of Switch View.
      *
-     * @param attrs
+     * @param attrs attributes
      */
     private void initAttr(AttributeSet attrs) {
         if (null == attrs) {
@@ -149,8 +172,15 @@ public class CySwitch extends View implements Checkable {
         mSliderColorChecked = a.getColor(R.styleable.CySwitch_sliderColorChecked, WHITE);
         mSliderColorUnchecked = a.getColor(R.styleable.CySwitch_sliderColorUnchecked, WHITE);
         mSliderRadius = a.getDimension(R.styleable.CySwitch_sliderRadius, 0f);
-        mSliderWidth = a.getDimension(R.styleable.CySwitch_sliderWidth, dp2px(sgtWidth(MIN_WIDTH)));
-        mSliderHeight = a.getDimension(R.styleable.CySwitch_sliderHeight, dp2px(sgtHeight(MIN_HEIGHT)));
+        mSliderWidth = a.getDimension(R.styleable.CySwitch_sliderWidth, dp2px(MIN_WIDTH));
+        mSliderHeight = a.getDimension(R.styleable.CySwitch_sliderHeight, dp2px(MIN_HEIGHT));
+        mBgWidth = a.getDimension(R.styleable.CySwitch_bgWidth, dp2px(MIN_WIDTH));
+        mBgHeight = a.getDimension(R.styleable.CySwitch_bgHeight, dp2px(MIN_HEIGHT));
+        mUncheckedText = a.getString(R.styleable.CySwitch_textUnchecked);
+        mCheckedText = a.getString(R.styleable.CySwitch_textChecked);
+        mTextSize = a.getDimension(R.styleable.CySwitch_textSize, dp2px(MIN_HEIGHT / 2));
+        mTextColorUnchecked = a.getColor(R.styleable.CySwitch_textColorUnchecked, mTextColorUnchecked);
+        mTextColorChecked = a.getColor(R.styleable.CySwitch_textColorChecked, mTextColorChecked);
         a.recycle();
     }
 
@@ -186,6 +216,14 @@ public class CySwitch extends View implements Checkable {
         mSliderPaint.setAntiAlias(true);
         mSliderPaint.setStyle(Paint.Style.FILL);
 
+        /**
+         * text
+         */
+        //paint
+        mTextPaint = new Paint();
+        mTextPaint.setStrokeWidth(0);
+        mTextPaint.setAntiAlias(true);
+        mTextPaint.setTextSize(mTextSize);
         resetPaintColor();
     }
 
@@ -202,26 +240,50 @@ public class CySwitch extends View implements Checkable {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        final int width = canvas.getWidth();
-        final int height = canvas.getHeight();
+        final int width = getWidth();
+        final int height = getHeight();
 
         /**
          * Drawing order from bottom to top to prevent overwriting.
          * background ---> border ---> slider
          */
         //Drawing background
-        final RectF bgRect = new RectF(0, 0, width, height);
+        final float bgOffsetWith = (width - mBgWidth) / 2;
+        final float bgOffsetHeight = (height - mBgHeight) / 2;
+        final RectF bgRect = new RectF(bgOffsetWith, bgOffsetHeight,
+                bgOffsetWith + mBgWidth, bgOffsetHeight + mBgHeight);
         canvas.drawRoundRect(bgRect, mViewRadius, mViewRadius, mBgPaint);
 
         // Drawing border
         if (mBorderWidth > 0) {
-            final RectF borderRect = new RectF(mBorderWidth / 2, mBorderWidth / 2, width - mBorderWidth / 2, height - mBorderWidth / 2);
+            final RectF borderRect = new RectF(bgOffsetWith + mBorderWidth / 2, bgOffsetHeight + mBorderWidth / 2,
+                    bgOffsetWith + mBgWidth - mBorderWidth / 2, bgOffsetHeight + mBgHeight - mBorderWidth / 2);
             canvas.drawRoundRect(borderRect, mViewRadius - mBorderWidth / 2, mViewRadius - mBorderWidth / 2, mBorderPaint);
         }
 
         // Drawing slider
         final RectF sliderRect = new RectF(mSlideCenter - mSliderWidth / 2 + mOffset, (height - mSliderHeight) / 2, mSlideCenter + mSliderWidth / 2 + mOffset, (mSliderHeight + height) / 2);
         canvas.drawRoundRect(sliderRect, mSliderRadius, mSliderRadius, mSliderPaint);
+
+        // Drawing text
+        final Paint.FontMetricsInt fm = mTextPaint.getFontMetricsInt();
+        if (!TextUtils.isEmpty(mUncheckedText)) {
+            mTextPaint.setColor(mChecked ? mTextColorUnchecked : mTextColorChecked);
+            // Calculate the baseline location.
+            final float baseLine = height * 1f / 2 + (fm.bottom - fm.top) * 1f / 2 - fm.bottom;
+            // Calculate the unchecked text location.
+            final float uncheckedTextLoc = width * 1f / 2 - mBgWidth * 1f / 4 - mTextPaint.measureText(mCheckedText) / 2;
+            canvas.drawText(mUncheckedText, uncheckedTextLoc, baseLine, mTextPaint);
+        }
+
+        if (!TextUtils.isEmpty(mCheckedText)) {
+            mTextPaint.setColor(mChecked ? mTextColorChecked : mTextColorUnchecked);
+            // Calculate the baseline location.
+            final float baseLine = height * 1f / 2 + (fm.bottom - fm.top) * 1f / 2 - fm.bottom;
+            // Calculate the checked text location.
+            final float checkedTextLoc = width * 1f / 2 + mBgWidth * 1f / 4 - mTextPaint.measureText(mUncheckedText) / 2;
+            canvas.drawText(mCheckedText, checkedTextLoc, baseLine, mTextPaint);
+        }
     }
 
     @Override
@@ -244,33 +306,24 @@ public class CySwitch extends View implements Checkable {
             height = dp2px(MIN_HEIGHT);
         }
 
-
         /**
-         * Prevent setting slider width or height in XML is bigger than View width or height recommended value. UI is ugly!
+         * Prevent setting slider width or height in XML is bigger than View width or height value.
          */
-        // Suggest Width
-        float sgtWidth = sgtWidth(width);
-        if (mSliderWidth > sgtWidth) {
-            mSliderWidth = sgtWidth;
-        }
-        // Suggest Height
-        float sgtHeight = sgtHeight(height);
-        if (mSliderHeight > sgtHeight) {
-            mSliderHeight = sgtHeight;
-        }
-
+        // Suggest slider range
+        suggestSliderRange(width, height);
+        // Suggest background range
+        suggestBgRange(width, height);
         // set location of slider center
-        setSlideCenter(width);
-
+        setSlideCenter(mBgWidth);
         setMeasuredDimension(width, height);
     }
 
     // set location of slider center
-    private void setSlideCenter(int width) {
+    private void setSlideCenter(float width) {
         if (mChecked) {
-            mSlideCenter = width * 3.0f / 4;
+            mSlideCenter = width * 3 / 4;
         } else {
-            mSlideCenter = width * 1.0f / 4;
+            mSlideCenter = width / 4;
         }
     }
 
@@ -291,7 +344,7 @@ public class CySwitch extends View implements Checkable {
         mChecked = checked;
 
         int width = getWidth();
-        startAnim(checked ? width / 2 : -width / 2);
+        startAnim(checked ? width * 1f / 2 : -width * 1f / 2);
     }
 
     private boolean isAnimRunning() {
@@ -308,7 +361,7 @@ public class CySwitch extends View implements Checkable {
         toggle();
         final boolean handled = super.performClick();
         if (!handled) {
-            //点击音效
+            // Click sound
             playSoundEffect(SoundEffectConstants.CLICK);
         }
         return handled;
@@ -332,22 +385,10 @@ public class CySwitch extends View implements Checkable {
                 invalidate();
             }
         });
-        mValueAnimator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
+        mValueAnimator.addListener(new SimpleAnimatorListener() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 switchCheckStatus();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
             }
         });
         mValueAnimator.start();
@@ -359,7 +400,7 @@ public class CySwitch extends View implements Checkable {
     private void switchCheckStatus() {
         mOffset = 0;
         //set location of slider center
-        setSlideCenter(getWidth());
+        setSlideCenter(mBgWidth);
         // reset paint color
         resetPaintColor();
         if (mOnCheckedListener != null) {
@@ -368,23 +409,40 @@ public class CySwitch extends View implements Checkable {
     }
 
     /**
-     * The suggest width for slider
-     *
-     * @param width
-     * @return
+     * The suggest range for slider
      */
-    private float sgtWidth(float width) {
-        return width * 9.0f / 20;
+    private void suggestSliderRange(float width, float height) {
+        final float halfWidth = width / 2;
+        if (mSliderWidth > halfWidth) {
+            mSliderWidth = halfWidth;
+        }
+        if (mSliderWidth < 1) {
+            mSliderWidth = 1;
+        }
+        if (mSliderHeight > height) {
+            mSliderHeight = height;
+        }
+        if (mSliderHeight < 1) {
+            mSliderHeight = 1;
+        }
     }
 
     /**
-     * The suggest height for slider
-     *
-     * @param height
-     * @return
+     * The suggest range for background
      */
-    private float sgtHeight(float height) {
-        return height * 4.0f / 5;
+    private void suggestBgRange(float width, float height) {
+        if (mBgWidth > width) {
+            mBgWidth = width;
+        }
+        if (mBgWidth < 1) {
+            mBgWidth = width;
+        }
+        if (mBgHeight > height) {
+            mBgHeight = height;
+        }
+        if (mBgHeight < 1) {
+            mBgHeight = height;
+        }
     }
 
 
@@ -437,9 +495,6 @@ public class CySwitch extends View implements Checkable {
 
     /**
      * DP to PX
-     *
-     * @param dpValue
-     * @return
      */
     private int dp2px(float dpValue) {
         float scale = getContext().getResources().getDisplayMetrics().density;
@@ -460,7 +515,7 @@ public class CySwitch extends View implements Checkable {
      * Interface definition for a callback to be invoked when the checked state
      * of a compound button changed.
      */
-    public static interface OnCheckedChangeListener {
+    public interface OnCheckedChangeListener {
         /**
          * Called when the checked state of a compound button has changed.
          *

@@ -29,6 +29,20 @@
         <attr name="sliderWidth" format="dimension|reference" />
         <!--滑块高-->
         <attr name="sliderHeight" format="dimension|reference" />
+        <!--背景宽-->
+        <attr name="bgWidth" format="dimension|reference" />
+        <!--背景高-->
+        <attr name="bgHeight" format="dimension|reference" />
+        <!--文字大小-->
+        <attr name="textSize" format="dimension|reference" />
+        <!--文字 Unchecked-->
+        <attr name="textUnchecked" format="string|reference" />
+        <!--文字 Checked-->
+        <attr name="textChecked" format="string|reference" />
+        <!--文字颜色 Checked-->
+        <attr name="textColorChecked" format="color|reference" />
+        <!--文字颜色 Unchecked-->
+        <attr name="textColorUnchecked" format="color|reference" />
     </declare-styleable>
 
 </resources>

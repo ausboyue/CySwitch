@@ -17,7 +17,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    // don't generate "BuildConfig" class.
+    // these code are out of date.
+    // libraryVariants.all {
+    // it.generateBuildConfig.enabled = false
+    //  }
+    libraryVariants.all { variant ->
+        variant.generateBuildConfigProvider.configure {
+            it.enabled = true
+        }
+    }
 }
 
 dependencies {

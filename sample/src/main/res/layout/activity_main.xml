@@ -1,26 +1,39 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingLeft="25dp"
-    android:paddingRight="25dp">
+    android:paddingRight="25dp"
+    tools:context=".MainActivity">
 
 
     <cn.icheny.view.CySwitch
         android:id="@+id/cy_switch"
-        android:layout_width="120dp"
-        android:layout_height="50dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
+        app:bgHeight="40dp"
+        app:bgWidth="100dp"
         app:borderColorChecked="@android:color/holo_green_dark"
-        app:borderColorUnchecked="@android:color/holo_blue_light"
+        app:borderColorUnchecked="@android:color/holo_red_light"
         app:borderWidth="0dp"
         app:isChecked="true"
-        app:sliderHeight="40dp"
+        app:sliderColorUnchecked="#FFFFFF"
+        app:sliderHeight="36dp"
         app:sliderRadius="0dp"
-        app:sliderWidth="40dp"
+        app:sliderWidth="46dp"
+        app:textChecked="英文"
+        app:textSize="15dp"
+        app:textUnchecked="中文"
         app:viewRadius="0dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="11dp" />
 
     <SeekBar
         android:id="@+id/pb_view_radius"
@@ -28,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:max="25"
+        android:max="40"
         android:progress="0" />
 
     <TextView
@@ -45,7 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:max="20"
+        android:max="40"
         android:progress="0" />
 
     <TextView
@@ -62,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:max="5"
+        android:max="10"
         android:progress="0" />
 
     <TextView
@@ -88,6 +101,5 @@
         android:onClick="checkableFalse"
         android:text="Checkable False"
         android:textAllCaps="false" />
-
 
 </LinearLayout>
