@@ -24,7 +24,7 @@ android {
     //  }
     libraryVariants.all { variant ->
         variant.generateBuildConfigProvider.configure {
-            it.enabled = true
+            it.enabled = false
         }
     }
 }
