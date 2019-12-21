@@ -20,7 +20,7 @@ Add to your root build.gradle:
 Add the dependency:
 ```groovy
     dependencies {
-            implementation 'com.github.ausboyue:CySwitch:1.0.2'
+            implementation 'com.github.ausboyue:CySwitch:1.1'
     }
 ```
 
@@ -111,6 +111,13 @@ sliderColorUnchecked|滑块颜色 Unchecked
 sliderRadius|滑块圆角
 sliderWidth|滑块宽
 sliderHeight|滑块高
+bgWidth|背景宽
+bgHeight|背景高
+textSize|文字大小
+textUnchecked|文字 Unchecked
+textChecked|文字 Checked
+textColorChecked|文字颜色 Checked
+textColorUnchecked|文字颜色 Unchecked
 
 # Bugs Report
 
@@ -125,6 +132,10 @@ Cheny - @[ausboyue on GitHub](https://github.com/ausboyue/), @[www.icheny.cn](ht
 Please give me some time to update the documentation.
 
 # Release note
+
+## 1.1
+ - Add display text for different state.
+ - Refactor "CySwitch" some methods.
 
 ## 1.0.2
  - Just help "jitpack.io" package.
